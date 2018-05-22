@@ -8,7 +8,13 @@ import com.serviceimpl.CarServiceImpl;
  */
 public class UserMainView extends View {
     private String mChoose;
+    private String USERNAME;
     private CarServiceImpl mCarService;
+
+    public UserMainView(String USERNAME) {
+        this.USERNAME = USERNAME;
+    }
+
     @Override
     public View showView() {
         for (int i = 0 ;i < 48;i++){
@@ -51,7 +57,7 @@ public class UserMainView extends View {
                         break;
                     case "6" :
                         mCarService = new CarServiceImpl();
-                        mCarService.queryRecordbyUser(0);
+                        mCarService.queryRecordbyUser(USERNAME);
                         break;
                     default:
                         System.out.println("选择错误，请按条件输入.");
@@ -67,7 +73,7 @@ public class UserMainView extends View {
                     case "1":
                         if ("+".equals(b) && d > 0){
                             mCarService = new CarServiceImpl();
-                            mCarService.rentCarbyUser(d);
+                            mCarService.rentCarbyUser(USERNAME,d);
                         }
                         break;
                     case "2" :
@@ -82,7 +88,7 @@ public class UserMainView extends View {
                         }
                         break;
                     case "3" :
-                        if ("+".equals(b) && d < 6 && d > 0){
+                        if ("+".equals(b) && d < 5 && d > 0){
                             mCarService = new CarServiceImpl();
                             mCarService.queryCarbyCategory(d);
                         }else {
@@ -90,7 +96,7 @@ public class UserMainView extends View {
                         }
                         break;
                     case "4" :
-                        if ("+".equals(b) && d < 5 && d > 0){
+                        if ("+".equals(b) && d < 6 && d > 0){
                             mCarService = new CarServiceImpl();
                             mCarService.queryCarbyBrand(d);
                         }else {
@@ -98,9 +104,9 @@ public class UserMainView extends View {
                         }
                         break;
                     case "7" :
-                        if ("+".equals(b)){
+                        if ("+".equals(b) && d > 0){
                             mCarService = new CarServiceImpl();
-                            mCarService.rentCarbyUser(d);
+                            mCarService.returnCarbyUser(USERNAME,d);
                         }else {
                             System.out.println("输入错误，请重新输入！");
                         }
