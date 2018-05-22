@@ -1,9 +1,7 @@
 package com.bean;
 
-
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  * 租赁记录表
@@ -17,8 +15,8 @@ public class Record implements Serializable,Comparable<Record>{
     private int userId;
     private int carId;
     private int payment;
-    private Timestamp starDate;
-    private Timestamp returnDate;
+    private Date starDate;
+    private Date returnDate;
 
     public int getRecordId() {
         return recordId;
@@ -52,26 +50,26 @@ public class Record implements Serializable,Comparable<Record>{
         this.payment = payment;
     }
 
-    public Timestamp getStarDate() {
+    public Date getStarDate() {
         return starDate;
     }
 
-    public void setStarDate(Timestamp starDate) {
+    public void setStarDate(Date starDate) {
         this.starDate = starDate;
     }
 
-    public Timestamp getReturnDate() {
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Timestamp returnDate) {
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 
     public Record() {
     }
 
-    public Record(int recordId, int userId, int carId, int payment, Timestamp starDate, Timestamp returnDate) {
+    public Record(int recordId, int userId, int carId, int payment, Date starDate, Date returnDate) {
         this.recordId = recordId;
         this.userId = userId;
         this.carId = carId;

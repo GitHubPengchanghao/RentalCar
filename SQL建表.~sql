@@ -147,3 +147,7 @@ DROP SEQUENCE t_brand_id_seq;
 DROP SEQUENCE t_category_id_seq;
 DROP SEQUENCE t_car_id_seq;
 DROP SEQUENCE t_record_id_seq;
+
+select t_car.id,t_car.model,t_car.t_comments,t_brand.name,t_category.name,t_car.rent,t_car.status,t_car.useable from
+t_car,t_brand,t_category where t_brand.id = t_car.brand_id and t_category.id = t_car.category_id order by t_car.id asc;
+

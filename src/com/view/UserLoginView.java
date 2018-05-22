@@ -38,7 +38,7 @@ public class UserLoginView extends View {
         int result = mUserService.userLogin(userName,userPwd);
         switch (result){
             case 0: System.out.println("登陆成功！");
-                    mView = new UserMainView();
+                    mView = new UserMainView(userName);
                 break;
             case 1: System.out.println("密码错误！");
                     mView = this;

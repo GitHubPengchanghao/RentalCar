@@ -7,7 +7,6 @@ import com.serviceimpl.CarServiceImpl;
  * @author Administrator
  */
 public class AdminMainView extends View {
-    private int chooseNum;
     private String mChoose;
     private CarServiceImpl mCarService;
 

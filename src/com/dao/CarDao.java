@@ -31,25 +31,23 @@ public interface CarDao {
      * 管理员按汽车编号查询汽车
      * @param carNumber 汽车编号
      */
-    void getCarbyId(int carNumber);
+    void getCarbyId(int carNumber) throws SQLException;
 
     /**
      * 管理员添加汽车
      * @return 0 添加成功，1 添加失败
      */
-    int addCarbyAdmin();
-
-    /**
-     * 用户借车
-     * @return 0 借车成功，1 借车失败
-     */
-    int borrowCar();
+    void addCarbyAdmin() throws SQLException;
 
     /**
      * 用户还车
-     * @return 0 还车成功，1 还车失败
      */
-    int rentCar();
+    void borrowCar(String userName,int carNumber) throws SQLException;
+
+    /**
+     * 用户借车
+     */
+    void rentCar(String userName,int carNumber) throws SQLException;
 
     /**
      * 管理员查询整个Car表数据
@@ -59,12 +57,12 @@ public interface CarDao {
 
     /**
      * 用户查询租车记录
-     * @param userNumber 用户编号
+     * @param userName 用户名
      */
-    void getRecordbyUser(int userNumber);
+    void getRecordbyUser(String userName) throws SQLException;
 
     /**
      * 管理员查询所有租车记录
      */
-    void getRecordbyAdmin();
+    void getRecordbyAdmin() throws SQLException;
 }

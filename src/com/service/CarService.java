@@ -1,10 +1,5 @@
 package com.service;
 
-import com.bean.Car;
-import com.bean.Record;
-
-import java.sql.SQLException;
-
 /**
  * 所有车表的操作，管理车，查询车
  * @author Administrator
@@ -48,9 +43,9 @@ public interface CarService {
 
     /**
      * 用户查看车租赁记录
-     * @param userNumber 根据用户编号传入Impl进行查询
+     * @param userName 根据用户编号传入Impl进行查询
      */
-    void queryRecordbyUser(int userNumber);
+    void queryRecordbyUser(String userName);
 
     /**
      * 管理员查看车租赁记录
@@ -59,22 +54,22 @@ public interface CarService {
 
     /**
      * 用户根据参数进行租车
+     * @param userName 用户名
      * @param carNumber 汽车编号
-     * @return 0 租车成功，1 租车失败
      */
-    int rentCarbyUser(int carNumber);
+    void rentCarbyUser(String userName,int carNumber);
 
     /**
      * 用户根据参数进行还车
+     * @param userName 用户名
      * @param carNumber 汽车编号
-     * @return 0 还车成功，1 还车失败
      */
-    int returnCarbyUser(int carNumber);
+    void returnCarbyUser(String userName,int carNumber);
 
     /**
      * 管理员修改汽车信息
      * @param carNumber 汽车编号
      * @return 0 修改成功，1 修改失败
      */
-    int chargeCar(int carNumber);
+    void chargeCar(int carNumber);
 }

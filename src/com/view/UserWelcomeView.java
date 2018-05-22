@@ -1,5 +1,7 @@
 package com.view;
 
+import java.util.InputMismatchException;
+
 /**
  * 用户欢迎界面
  * @author Administrator
@@ -17,11 +19,11 @@ public class UserWelcomeView extends View {
         }
         System.out.println("\n1.登录 2.注册 3.退出");
         while (true){
-            chooseNum = mScanner.nextInt();
-            if (chooseNum > 3 || chooseNum < 1){
-                System.out.println("选择错误，请输入数字1-3.");
-                continue;
-            }
+                    chooseNum = mScanner.nextInt();
+                    if (chooseNum > 3 || chooseNum < 0) {
+                        System.out.println("选择错误，请输入数字1-3.");
+                        continue;
+                    }
             break;
         }
         switch (chooseNum){

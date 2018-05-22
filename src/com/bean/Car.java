@@ -142,17 +142,6 @@ public class Car implements Serializable,Comparable <Car>{
                 carStatus + "\t\t";
     }
 
-    public String toString1() {
-        return carId + "\t\t\t" +
-                carModel + "\t\t" +
-                carComments + "\t" +
-                brandId + "\t\t\t" +
-                categoryId + "\t\t" +
-                carRent + "\t\t\t" +
-                carStatus + "\t\t\t\t" +
-                carUseable;
-    }
-
     /**
      * 重写compareTo方法，以汽车ID对汽车表进行排序。
      * @param o

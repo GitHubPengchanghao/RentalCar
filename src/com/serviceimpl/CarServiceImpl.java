@@ -1,10 +1,8 @@
 package com.serviceimpl;
 
-import com.bean.Car;
-import com.bean.Record;
 import com.daoimpl.CarDaoImpl;
 import com.service.CarService;
-import com.service.DbHelp;
+
 import java.sql.SQLException;
 
 public class CarServiceImpl implements CarService {
@@ -57,29 +55,32 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public void queryCarbyAdmin(int type) {
-        try {
             mCarDao.getCarbyAdmin(type);
+    }
+
+    /**
+     * 管理员添加车
+     */
+    @Override
+    public void addCar() {
+        try {
+            mCarDao.addCarbyAdmin();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * 管理员添加车
-     * @return rue注册成功,false注册失败
-     */
-    @Override
-    public void addCar() {
-        mCarDao.addCarbyAdmin();
-    }
-
-    /**
      * 用户查询租车记录，只显示当前用户的租车记录
-     * @param userNumber 根据用户编号请求sql数据
+     * @param userName 根据用户编号请求sql数据
      */
     @Override
-    public void queryRecordbyUser(int userNumber){
-
+    public void queryRecordbyUser(String userName){
+        try {
+            mCarDao.getRecordbyUser(userName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -87,36 +88,51 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public void queryRecordbyAdmin(){
-
+        try {
+            mCarDao.getRecordbyAdmin();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 用户根据参数进行租车
+     * @param userName 用户名
      * @param carNumber 汽车编号
-     * @return 0 租车成功，1 租车失败
      */
     @Override
-    public int rentCarbyUser(int carNumber) {
-        return 0;
+    public void rentCarbyUser(String userName,int carNumber) {
+        try {
+            mCarDao.rentCar(userName,carNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 用户根据参数进行还车
+     * @param userName 用户名
      * @param carNumber 汽车编号
-     * @return 0 还车成功，1 还车失败
      */
     @Override
-    public int returnCarbyUser(int carNumber) {
-        return 0;
+    public void returnCarbyUser(String userName,int carNumber) {
+        try {
+            mCarDao.borrowCar(userName,carNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 管理员修改汽车信息
      * @param carNumber 汽车编号
-     * @return 0 修改成功，1 修改失败
      */
     @Override
-    public int chargeCar(int carNumber) {
-        return 0;
+    public void chargeCar(int carNumber) {
+        try {
+            mCarDao.chargeCarbyAdmin(carNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

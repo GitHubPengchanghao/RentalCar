@@ -134,6 +134,7 @@ VALUES(3,4,5,to_date('2017-03-01','yyyy-mm-dd'),to_date('2017-03-03','yyyy-mm-dd
 INSERT INTO t_record 
 VALUES(4,1,1,to_date('2017-03-02','yyyy-mm-dd'),to_date('2017-03-06','yyyy-mm-dd'),288);
 
+
 COMMIT;
 
 CREATE SEQUENCE t_user_id_seq START WITH 8 INCREMENT BY 1;
@@ -150,4 +151,24 @@ DROP SEQUENCE t_record_id_seq;
 
 select t_car.id,t_car.model,t_car.t_comments,t_brand.name,t_category.name,t_car.rent,t_car.status,t_car.useable from
 t_car,t_brand,t_category where t_brand.id = t_car.brand_id and t_category.id = t_car.category_id order by t_car.id asc;
+
+SELECT t_record.id,t_car.id,t_car.model,t_record.payment,t_car.t_comments,t_brand.name,t_category.name,t_record.start_date,t_record.return_date
+FROM t_record,t_car,t_brand,t_category WHERE t_brand.id = t_car.id AND t_category.id = t_car.id AND t_car.id = t_record.car_id
+AND t_record.user_id = 1 ORDER BY t_record.id DESC;
+       
+SELECT t_car.id,t_car.model,t_car.t_comments,t_brand.name,'(',t_brand.id,')',t_category.name,'(',t_category.id,')',t_car.rent,'/Ìì',t_car.status 
+FROM t_car,t_brand,t_category WHERE t_category.id = 1 AND t_brand.id = t_car.brand_id AND t_category.id = t_car.category_id ORDER BY t_car.id ASC;
+        
+SELECT t_record.id,t_car.id,t_car.model,t_record.payment,t_car.t_comments,t_brand.name,t_category.name,t_record.start_date,t_record.return_date
+FROM t_record,t_car,t_brand,t_category,t_user WHERE t_brand.id = t_car.brand_id AND t_category.id = t_car.category_id AND t_record.user_id = t_user.id
+AND t_user.username = 'xiaoming' AND t_car.id = t_record.car_id ORDER BY t_record.id ASC;
+
+select t_record_id_seq.currval from dual;
+select t_user_id_seq.currval from dual;
+select t_brand_id_seq.currval from dual;
+select t_category_id_seq.currval from dual;
+select t_car_id_seq.currval from dual;
+
+
+       
 
