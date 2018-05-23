@@ -34,7 +34,7 @@ public class AdminLoginView extends View {
             break;
         }
 
-        int result = mUserService.userLogin(userName,userPwd);
+        int result = mUserService.userLogin(userName,userPwd,1);
         switch (result){
             case 0: System.out.println("登陆成功！");
                     mView = new AdminMainView();

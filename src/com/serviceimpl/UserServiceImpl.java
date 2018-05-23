@@ -15,10 +15,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int userLogin(String userName, String userPwd) {
+    public int userLogin(String userName, String userPwd,int type) {
         User mUser = null;
         try {
-            mUser = mUserDao.getUserName(userName);
+            mUser = mUserDao.getUserName(userName,type);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,10 +50,10 @@ public class UserServiceImpl implements UserService {
      * @param userName
      * @return 返回1则用户名可用，返回0则用户名已存在
      */
-    public int userNameOnly(String userName){
+    public int userNameOnly(String userName,int type){
         User mUser = null;
         try {
-            mUser = mUserDao.getUserName(userName);
+            mUser = mUserDao.getUserName(userName,type);
         } catch (SQLException e) {
             e.printStackTrace();
         }

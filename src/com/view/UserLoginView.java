@@ -35,7 +35,7 @@ public class UserLoginView extends View {
             break;
         }
 
-        int result = mUserService.userLogin(userName,userPwd);
+        int result = mUserService.userLogin(userName,userPwd,0);
         switch (result){
             case 0: System.out.println("登陆成功！");
                     mView = new UserMainView(userName);

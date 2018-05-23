@@ -32,9 +32,9 @@ public class RegisterView extends View {
         User mUser = new User();
             if (userName.length() == 0){
                 while (true){
-                    System.out.println("请输入用户名：");
+                    System.out.println("请输入用户名(长度大于5)：");
                     userName = mScanner.next();
-                    int result = mUserService.userNameOnly(userName);
+                    int result = mUserService.userNameOnly(userName,0);
                     if (result == 0){
                         System.out.println("用户名已存在！");
                         continue;
@@ -89,6 +89,7 @@ public class RegisterView extends View {
             System.out.println("注册成功");
             mView = new UserLoginView();
         }else {
+            userName = "";
             mView = this;
         }
         return mView;

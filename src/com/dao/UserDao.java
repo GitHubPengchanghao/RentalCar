@@ -12,8 +12,9 @@ public interface UserDao {
     /**
      * 获取用户名
      * @param username
+     * @param type 用户类型
      * @return
      */
-    User getUserName(String username) throws SQLException;
+    User getUserName(String username,int type) throws SQLException;
     int addUser(User user) throws SQLException;
 }

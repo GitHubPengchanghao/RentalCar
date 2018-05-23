@@ -30,11 +30,12 @@ public class UserDaoImpl implements UserDao {
      * @throws SQLException
      */
     @Override
-    public User getUserName(String username) throws SQLException {
+    public User getUserName(String username,int type) throws SQLException {
         User mUser = null;
-        String sql = "select * from t_user where username = ?";
+        String sql = "select * from t_user where username = ? and type = ?";
         mPreparedStatement = mConnection.prepareStatement(sql);
         mPreparedStatement.setString(1,username);
+        mPreparedStatement.setInt(2,type);
         mResultSet = mPreparedStatement.executeQuery();
         while (mResultSet.next()){
             mUser = new User();
@@ -66,18 +67,26 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public int addUser(User user) throws SQLException {
-        String sql = "insert into t_user values(?,?,?,?,?,?,?,?)";
-        int seq = getUserSeq();
+        String sql = "select * from t_user where username = ?";
         mPreparedStatement = mConnection.prepareStatement(sql);
-        mPreparedStatement.setInt(1,seq);
-        mPreparedStatement.setString(2,user.getUserName());
-        mPreparedStatement.setString(3,user.getUserPwd());
-        mPreparedStatement.setInt(4,user.getUserGender());
-        mPreparedStatement.setString(5,user.getUserIdNumber());
-        mPreparedStatement.setString(6,user.getUserTel());
-        mPreparedStatement.setString(7,user.getUserAddress());
-        mPreparedStatement.setInt(8,user.getUserType());
-        return mPreparedStatement.executeUpdate();
+        mPreparedStatement.setString(1,user.getUserName());
+        mResultSet = mPreparedStatement.executeQuery();
+        if (mPreparedStatement.executeUpdate() == 0){
+            sql = "insert into t_user values(?,?,?,?,?,?,?,?)";
+            int seq = getUserSeq();
+            mPreparedStatement = mConnection.prepareStatement(sql);
+            mPreparedStatement.setInt(1,seq);
+            mPreparedStatement.setString(2,user.getUserName());
+            mPreparedStatement.setString(3,user.getUserPwd());
+            mPreparedStatement.setInt(4,user.getUserGender());
+            mPreparedStatement.setString(5,user.getUserIdNumber());
+            mPreparedStatement.setString(6,user.getUserTel());
+            mPreparedStatement.setString(7,user.getUserAddress());
+            mPreparedStatement.setInt(8,user.getUserType());
+            return mPreparedStatement.executeUpdate();
+        }else {
+            return 0;
+        }
     }
 
     /**
